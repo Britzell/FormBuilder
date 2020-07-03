@@ -1,0 +1,27 @@
+{
+    "name": "britzel/form",
+    "version": "0.1.0",
+    "description": "Form builder",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Britzel",
+            "email": "britzel99@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Britzel\\Form\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Britzel\\Form\\Tests\\": "tests/"
+        }
+    }
+}
