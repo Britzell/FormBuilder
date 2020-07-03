@@ -1,6 +1,7 @@
 {
     "name": "britzel/form",
-    "version": "0.1.0",
+    "version": "0.1.2",
+    "type": "library",
     "description": "Form builder",
     "license": "MIT",
     "minimum-stability": "stable",
@@ -11,7 +12,7 @@
         }
     ],
     "require": {
-        "php": "^7.2"
+        "php": ">=7.2"
     },
     "autoload": {
         "psr-4": {

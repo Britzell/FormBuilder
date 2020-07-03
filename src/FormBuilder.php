@@ -12,8 +12,15 @@ class FormBuilder
     const EMAIL_TYPE = 3;
     const DATE_TYPE = 4;
     const PASSWORD_TYPE = 5;
+    const CHECKBOX_TYPE = 6;
+    const TIME_TYPE = 7;
+    const FILE_TYPE = 8;
     const HIDDEN_TYPE = 9;
     const SUBMIT_TYPE = 10;
+    const COLOR_TYPE = 11;
+    const RANGE_TYPE = 12;
+    const SEARCH_TYPE = 13;
+    const URL_TYPE = 14;
 
     const DEFAULT_THEME = 0;
     const BOOTSTRAP4_THEME = 1;

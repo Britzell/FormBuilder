@@ -80,10 +80,24 @@ class Form
                 return 'date';
             case 5:
                 return 'password';
+            case 6:
+                return 'checkbox';
+            case 7:
+                return 'time';
+            case 8:
+                return 'file';
             case 9:
                 return 'hidden';
             case 10:
                 return 'submit';
+            case 11:
+                return 'color';
+            case 12:
+                return 'range';
+            case 13:
+                return 'search';
+            case 14:
+                return 'url';
             default:
                 return 'text';
         }
