@@ -77,21 +77,24 @@ class FormBuilder
         return $this;
     }
 
-    public function getForm()
+    public function getForm(bool $createOtherInput = true)
     {
-        foreach ($this->getMethods() as $method) {
-            $n = 0;
-            foreach ($this->form as $input => $value) {
-                if ($method === $input)
-                    $n = 1;
-            }
-            if ($n === 0) {
-                $notFound[] = $method;
-            }
-        }
+        if ($createOtherInput) {
 
-        foreach ($notFound as $input) {
-            $this->form[$input] = ['type' => $this->getType($input)];
+            foreach ($this->getMethods() as $method) {
+                $n = 0;
+                foreach ($this->form as $input => $value) {
+                    if ($method === $input)
+                        $n = 1;
+                }
+                if ($n === 0) {
+                    $notFound[] = $method;
+                }
+            }
+
+            foreach ($notFound as $input) {
+                $this->form[$input] = ['type' => $this->getType($input)];
+            }
         }
 
         foreach ($this->form as $input => $value) {
