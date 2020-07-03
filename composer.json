@@ -2,7 +2,6 @@
     "name": "britzel/form",
     "version": "0.1.0",
     "description": "Form builder",
-    "type": "composer-plugin",
     "license": "MIT",
     "minimum-stability": "stable",
     "authors": [
