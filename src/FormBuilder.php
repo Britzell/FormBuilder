@@ -80,7 +80,7 @@ class FormBuilder
     public function getForm(bool $createOtherInput = true)
     {
         if ($createOtherInput) {
-
+            $notFound = [];
             foreach ($this->getMethods() as $method) {
                 $n = 0;
                 foreach ($this->form as $input => $value) {
@@ -114,6 +114,8 @@ class FormBuilder
     public function remove(string $name)
     {
         $this->form[$name]['disabled'] = true;
+
+        return $this;
     }
 
 }

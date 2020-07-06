@@ -48,6 +48,9 @@ class Form
                     if (isset($options['placeholder']))
                         $form .= ' placeholder="' . $options['placeholder'] . '"';
 
+                    if (!isset($options['required']) || $options['required'] !== false)
+                        $form .= ' required';
+
                     $form .= '></div>';
 
                 }
