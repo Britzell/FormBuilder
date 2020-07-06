@@ -16,6 +16,11 @@ class Form
             if ($input !== '_formTheme' && $input !== 'submit') {
                 if (!isset($options['disabled']) || $options['disabled'] === false) {
 
+                    if ($formBuilder['_formTheme']) {
+                        $options['rowAttr']['class'] = $this->getClassTheme($formBuilder['_formTheme'], true) . ' ' . ($options['rowAttr']['class'] ?? '');
+                        $options['attr']['class'] = $this->getClassTheme($formBuilder['_formTheme']) . ' ' . ($options['attr']['class'] ?? '');
+                    }
+
                     if (isset($options['rowAttr'])) {
                         $form .= '<div';
 
@@ -46,7 +51,13 @@ class Form
                     $form .= '></div>';
 
                 }
-            } elseif ($input === 'submit') {
+            }
+
+        }
+
+        foreach ($formBuilder as $input => $options) {
+
+            if ($input === 'submit') {
 
                 if (isset($options['rowAttr']['class']))
                     $form .= '<div class="' . $options['rowAttr']['class'] . '">';
@@ -100,6 +111,25 @@ class Form
                 return 'url';
             default:
                 return 'text';
+        }
+    }
+
+    private function getClassTheme(int $theme, bool $isRow = false): string
+    {
+        if ($isRow) {
+            switch ($theme) {
+                case FormBuilder::BOOTSTRAP4_THEME:
+                    return 'form-group';
+                default:
+                    return '';
+            }
+        } else {
+            switch ($theme) {
+                case FormBuilder::BOOTSTRAP4_THEME:
+                    return 'form-control';
+                default:
+                    return '';
+            }
         }
     }
 

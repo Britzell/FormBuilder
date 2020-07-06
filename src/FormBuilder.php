@@ -59,7 +59,7 @@ class FormBuilder
         if ($name === 'password' || $name === 'passwordConfirm')
             return self::PASSWORD_TYPE;
         if ($name === 'birthday' || substr($name, -2) === 'At' || substr($name, -2) === 'at')
-            return self::EMAIL_TYPE;
+            return self::DATE_TYPE;
 
         return self::TEXT_TYPE;
     }
@@ -98,7 +98,7 @@ class FormBuilder
         }
 
         foreach ($this->form as $input => $value) {
-            if ($input !== '_formTheme') {
+            if ($input !== '_formTheme' && $input !== 'submit') {
                 if (isset($this->form[$input]['rowAttr']['class']) && isset($this->optionsToAll['rowAttr']['class']))
                     $this->form[$input]['rowAttr']['class'] = $this->optionsToAll['rowAttr']['class'] . ' ' . $this->form[$input]['rowAttr']['class'];
                 if (isset($this->form[$input]['attr']['class']) && isset($this->optionsToAll['attr']['class']))
@@ -109,6 +109,11 @@ class FormBuilder
         }
 
         return $this->form;
+    }
+
+    public function remove(string $name)
+    {
+        $this->form[$name]['disabled'] = true;
     }
 
 }
