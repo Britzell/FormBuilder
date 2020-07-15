@@ -45,6 +45,9 @@ class Form
                             $form .= ' class="' . $options['attr']['class'] . '"';
                     }
 
+                    if (isset($options['value']))
+                        $form .= ' value="' . $options['value'] . '"';
+
                     if (isset($options['placeholder']))
                         $form .= ' placeholder="' . $options['placeholder'] . '"';
 
