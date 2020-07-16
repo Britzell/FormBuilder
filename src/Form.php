@@ -23,13 +23,24 @@ class Form
 
                     if (isset($options['rowAttr'])) {
                         $form .= '<div';
-
-                        if (isset($options['rowAttr']['class']))
-                            $form .= ' class="' . $options['rowAttr']['class'] . '"';
+	
+	                    foreach ($options['rowAttr'] as $key => $value) {
+		                    if ($this->optionRowIsValid($key))
+		                        $form .= ' ' . $key . '="' . $value . '"';
+	                    }
 
                         $form .= '>';
                     } else {
                         $form .= '<div>';
+                    }
+                    
+                    if (isset($options['errors'])) {
+	                    $form .= '<div class="' . ($options['helpAttr']['class'] ?? '') . '">';
+	                    if (is_array($options['help'])) {
+		                    foreach ($options['help'] as $value) {
+			                    $form .= '<span>' . $value . '</span>';
+		                    }
+	                    }
                     }
 
                     if (isset($options['label'])) {
@@ -41,8 +52,10 @@ class Form
                     $form .= '<input type="' . $this->getType($options['type']) . '" name="' . $input . '"';
 
                     if (isset($options['attr'])) {
-                        if (isset($options['attr']['class']))
-                            $form .= ' class="' . $options['attr']['class'] . '"';
+	                    foreach ($options['attr'] as $key => $value) {
+		                    if ($this->optionIsValid($key))
+			                    $form .= ' ' . $key . '="' . $value . '"';
+	                    }
                     }
 
                     if (isset($options['value']))
@@ -54,7 +67,18 @@ class Form
                     if (!isset($options['required']) || $options['required'] !== false)
                         $form .= ' required';
 
-                    $form .= '></div>';
+                    $form .= '>';
+	
+	                if (!empty($options['help'])) {
+						$form .= '<div class="' . ($options['helpAttr']['class'] ?? '') . '">';
+						if (is_array($options['help'])) {
+							foreach ($options['help'] as $value) {
+								$form .= '<span>' . $value . '</span>';
+							}
+						}
+	                }
+	                
+                    $form .= '</div>';
 
                 }
             }
@@ -138,5 +162,33 @@ class Form
             }
         }
     }
+    
+    private function optionIsValid(string $option) {
+	    switch ($option) {
+		    case 'id':
+		    case 'class':
+		    case 'min':
+		    case 'max':
+		    case 'minLength':
+		    case 'maxLength':
+		    case 'accept':
+		    case 'alt':
+		    case 'autofocus':
+		    case 'pattern':
+			    return true;
+		    default:
+			    return false;
+	    }
+    }
+	
+	private function optionRowIsValid(string $option) {
+		switch ($option) {
+			case 'id':
+			case 'class':
+				return true;
+			default:
+				return false;
+		}
+	}
 
 }
