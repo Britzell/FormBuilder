@@ -19,13 +19,21 @@ $user = new User();
 function createFormBuilder($entity, $theme = FormBuilder::DEFAULT_THEME) {
     return new FormBuilder($entity, $theme);
 }
-
+createFormBuilder($user, FormBuilder::BOOTSTRAP4_THEME)->isValid();
 $formBuilder = createFormBuilder($user, FormBuilder::BOOTSTRAP4_THEME)
     ->addClassToAll(['attr' => ['class' => 'test']])
-    ->add('email', FormBuilder::EMAIL_TYPE, ['label' => 'E-mail :', 'placeholder' => 'Email :', 'rowAttr' => ['class' => 'div'], 'attr' => ['class' => 'input']])
-    ->add('createdAt', FormBuilder::DATE_TYPE, ['disabled' => true])
-    ->getForm();
-d($formBuilder);
+    ->add('email', FormBuilder::EMAIL_TYPE, ['label' => 'E-mail :', 'placeholder' => 'Email :', 'rowAttr' => ['class' => 'div'], 'attr' => ['class' => 'input'], 'required' => false])
+    ->add('createdAt', FormBuilder::DATE_TYPE, ['disabled' => true]);
+
+d($formBuilder->isSubmitted());
+d($formBuilder->isValid());
+
+$formView = $formBuilder->getForm();
+
+d($formView);
 
 $form = new Form();
-echo $form->create($formBuilder);
+?>
+<form action="" method="post">
+<?= $form->create($formView) ?>
+</form>

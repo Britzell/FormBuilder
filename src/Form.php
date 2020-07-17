@@ -36,8 +36,8 @@ class Form
                     
                     if (isset($options['errors'])) {
 	                    $form .= '<div class="' . ($options['helpAttr']['class'] ?? '') . '">';
-	                    if (is_array($options['help'])) {
-		                    foreach ($options['help'] as $value) {
+	                    if (is_array($options['errors'])) {
+		                    foreach ($options['errors'] as $value) {
 			                    $form .= '<span>' . $value . '</span>';
 		                    }
 	                    }

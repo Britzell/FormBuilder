@@ -117,5 +117,32 @@ class FormBuilder
 
         return $this;
     }
+	
+	public function isSubmitted(): bool
+	{
+		if (!empty($_POST))
+			return true;
+		return false;
+    }
+	
+	public function isValid(): bool
+	{
+		$valid = true;
+		
+		foreach ($this->form as $name => $option) {
+			if ($name !== '_formTheme') {
+				if (!isset($_POST[$name])) {
+					$this->form[$name]['errors'] = ['vide'];
+					$valid = false;
+				}
+			}
+		}
+		
+		if ($valid) {
+		
+		}
+		
+		return $valid;
+    }
 
 }
